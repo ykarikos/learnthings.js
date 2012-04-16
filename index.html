@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Learnthings.js</title>
+<script src="jquery-1.7.2.min.js"></script>
+<!--
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+-->
+<style type="text/css">
+body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+}
+#theimage {
+  width: 100%;
+}
+</style>
+<script type="text/javascript">
+
+var images = [
+"http://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Coq_Belle-Ile.jpg/1024px-Coq_Belle-Ile.jpg",
+"http://upload.wikimedia.org/wikipedia/commons/c/c4/Lleyn_sheep.jpg",
+"http://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Sus_scrofa_scrofa.jpg/1280px-Sus_scrofa_scrofa.jpg",
+"http://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Cow_female_black_white.jpg/1280px-Cow_female_black_white.jpg",
+"http://upload.wikimedia.org/wikipedia/commons/2/26/YellowLabradorLooking_new.jpg",
+"http://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Nokota_Horses.jpg/1280px-Nokota_Horses.jpg",
+"http://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Anas_platyrhynchos_var._domesticus_01.jpg/1280px-Anas_platyrhynchos_var._domesticus_01.jpg",
+"http://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/European_shorthair_procumbent_Quincy.jpg/1280px-European_shorthair_procumbent_Quincy.jpg",
+"http://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Chickens_eating.jpg/1024px-Chickens_eating.jpg"
+];
+
+
+var changeImage = function() {
+	var i = Math.floor(Math.random() * images.length);
+	$("#theimage").attr("src", images[i]);
+	setTimeout("changeImage()", 2000);
+}
+
+$(document).ready(function(){
+	changeImage();
+});
+
+</script>
+</head>
+<body>
+
+<div id="main"><img id="theimage"/></div>
+
+</body>
+</html>
