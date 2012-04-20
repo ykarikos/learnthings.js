@@ -43,17 +43,27 @@ var sounds = [
 ];
 
 var changeImage = function() {
+	$image = $("#theimage")
 	var i = Math.floor(Math.random() * images.length);
-	$("#theimage").attr("src", images[i]);
+	$image.hide();
+	$image.attr("src", images[i]);
 
-	var audio = $("#theaudio");
-	audio.empty();
+	var $audio = $("#theaudio");
+	$audio.empty();
 	var source = $("<source/>");
 	source.attr("src", sounds[i]);
-	audio.append(source);
+	$audio.append(source);
+	// delay slide so that the images has been loaded
+	setTimeout("slideImage()", 100);
 
-	audio[0].play();
-	setTimeout("changeImage()", 10000);
+	setTimeout("changeImage()", 4000);
+}
+
+var slideImage = function() {
+	$('#theimage').slideDown('slow', function() {
+		// Animation complete.
+		$("#theaudio")[0].play();
+	});
 }
 
 $(document).ready(function(){
@@ -64,7 +74,8 @@ $(document).ready(function(){
 </head>
 <body>
 
-<div id="main"><img id="theimage"/></div>
+
+<div><img id="theimage" style="display: none;"></div>
 <audio id="theaudio">
 </audio>
 
