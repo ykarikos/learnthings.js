@@ -1,0 +1,11 @@
+Learnthings.js
+
+An attempt to create a Javascript port of https://github.com/ykarikos/learnthings
+
+Tested on Chrome
+
+Shortcomings:
+ - Full screen mode can not be guaranteed as in the Python version
+   without some kiosk plugins that are always somehow limited and hacky
+ - Coded on bare jQuery, but the problem space would be better solved
+   with some JS game library.
