@@ -3,9 +3,6 @@
 <head>
  <title>Learnthings.js</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<!--
-<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
--->
 <style type="text/css">
 body {
   margin: 0;
@@ -17,6 +14,11 @@ body {
 }
 </style>
 <script type="text/javascript">
+
+// At least how many milliseconds each image is showed
+var timeTreshold = 5000;
+// How many times any key must be pressed after timeTreshold seconds
+var keyTreshold = 5;
 
 var images = [
 "http://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Coq_Belle-Ile.jpg/1024px-Coq_Belle-Ile.jpg",
@@ -56,8 +58,19 @@ var changeImage = function() {
 	// delay slide so that the images has been loaded
 	setTimeout("slideImage()", 100);
 
-	setTimeout("changeImage()", 5000);
-}
+	setTimeout("nextImage()", timeTreshold);
+};
+
+// wait for keyTreshold keypresses
+var nextImage = function(keysLimit) {
+	if (keysLimit == undefined) {
+		setTimeout("nextImage(" + (keypressed + keyTreshold) + ")", 500);
+	} else if (keypressed > keysLimit) {
+		changeImage();
+	} else {
+		setTimeout("nextImage(" + keysLimit + ")", 500);
+	}
+};
 
 var slideImage = function() {
     $('#main').animate({
@@ -68,7 +81,18 @@ var slideImage = function() {
     });
 }
 
+var keypressed = 0;
+var oldKey = 0;
+
 $(document).ready(function(){
+	// keydown event loop
+	$("body").keydown(function(event) {
+		if (event.keyCode != oldKey) {
+			keypressed++;
+		}
+		oldKey = event.keyCode;
+	});
+
 	changeImage();
 });
 
