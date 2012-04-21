@@ -2,7 +2,9 @@ Learnthings.js
 
 An attempt to create a Javascript port of https://github.com/ykarikos/learnthings
 
-Tested on Chrome and Firefox
+Try it at http://ranskan.peruna.fi/learnthings.js/
+
+Tested on Chrome and Firefox.
 
 Shortcomings:
  - Staying in full screen mode can not be guaranteed as in the Python version

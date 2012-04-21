@@ -25,12 +25,26 @@ h1 {
 
 #select button {
   margin-left: 5px;
+  height: 30px;
 }
 
 #select button:first-letter {
   text-transform: uppercase;
 }
 
+#startup p {
+  color: #888;
+  margin-left: 30px;
+  font-size: 13px;
+}
+
+#startup p a {
+  color: #888;
+  text-decoration: none;
+  border: 1px dotted;
+  padding: 2px;
+  border-radius: 3px;
+}
 
 #theimage {
   width: 100%;
