@@ -2,19 +2,13 @@
 <html>
 <head>
  <title>Learnthings.js</title>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script src="data.js"></script>
-<style type="text/css">
-body {
-  margin: 0;
-  padding: 0;
-  background: #000;
-  overflow: hidden;
-}
-#theimage {
-  width: 100%;
-}
-</style>
+
+<link rel="stylesheet" href="learnthings.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="btn.css" type="text/css" media="screen" />
+
 <script type="text/javascript">
 
 // At least how many milliseconds each image is showed
@@ -22,6 +16,8 @@ var timeTreshold = 5000;
 // How many times any key must be pressed after timeTreshold seconds
 var keyTreshold = 5;
 
+var images = null;
+var sounds = null;
 
 var changeImage = function() {
 	$image = $("#theimage")
@@ -30,7 +26,7 @@ var changeImage = function() {
 	$image.attr("src", images[i]);
 
 	$("#theaudio").attr("src", sounds[i]);
-	// delay slide so that the images has been loaded
+	// delay slide so that the images have been loaded
 	setTimeout("slideImage()", 100);
 
 	setTimeout("nextImage()", timeTreshold);
@@ -56,6 +52,13 @@ var slideImage = function() {
     });
 }
 
+var startgame = function(media) {
+	$("#startup").hide();
+	images = media.images;
+	sounds = media.sounds;
+	changeImage();
+};
+
 var keypressed = 0;
 var oldKey = 0;
 
@@ -68,13 +71,37 @@ $(document).ready(function(){
 		oldKey = event.keyCode;
 	});
 
-	changeImage();
+	var $btnPlaceholder = $("#select span");
+	// create buttons for each media category
+	$.each(media, function(key, value) { 
+		var $btn = $('<button class="btn"/>');
+		$btn.text(key);
+		$btnPlaceholder.append($btn);
+		$btn.click(function() {
+			startgame(value);
+		});
+	});
 });
 
 </script>
 </head>
 <body>
 
+<div id="startup">
+<a href="http://github.com/ykarikos/learnthings.js/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/4c7dc970b89fd04b81c8e221ba88ff99a06c6b61/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub"></a>
+
+<h1>Learnthings.js</h1>
+
+<ol id="select">
+<li>Enter full screen browsing</li>
+<li>
+Select things:
+<span>
+</span>
+</li>
+</ol>
+
+</div>
 
 <div id="main"><img id="theimage"></div>
 <audio id="theaudio">

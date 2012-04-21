@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  padding: 0;
+  color: #ccc;
+  background: #000;
+  overflow: hidden;
+  font-family: Helvetica, sans-serif;
+}
+
+h1 {
+  margin-top: 0;
+  padding: 45px 30px;
+  background: #222;
+  font-size: 50px;
+}
+
+#select {
+  margin-left: 30px;
+  font-size: 30px;
+}
+
+#select li {
+  margin-bottom: 20px;
+}
+
+#select button {
+  margin-left: 5px;
+}
+
+#theimage {
+  width: 100%;
+}
